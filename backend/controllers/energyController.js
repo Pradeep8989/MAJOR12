@@ -23,7 +23,9 @@ exports.getInsights = async (req, res) => {
    const totalPower = data.reduce((sum, item) => sum + Number(item.power), 0);
 
     // Highest consuming device
-    let highest = data[0];
+    let highest = data.find(
+    item => item.device && item.power
+);
     data.forEach(item => {
         if (Number(item.power) > Number(highest.power)) {
             highest = item;
